@@ -1,0 +1,25 @@
+<% include ../partials/header %>
+
+
+<div class="ui main text container segment">
+  <div class="ui huge header">Jobs Description</div>
+   
+    <form class="ui form" action="/indexjob" method="POST">
+        <div class="field">
+        <label>Title</label>
+        <input type="text" name="job[title]" placeholder="title">    
+        </div> 
+        <div class="field">
+        <label>Job URL</label>
+        
+        <input type="text" name="job[body]" placeholder="job url">  
+        </div>
+        <button class="ui blue  basic button">
+        <i class="icon upload"></i> Post</button>
+        <button class="ui green   basic button">
+          <i class="icon upload" href="/indexjob"></i> back</button>
+    </form>
+
+</div>
+
+<% include ../partials/footer %>

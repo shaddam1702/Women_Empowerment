@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetching Location</title>
+    <script  src="http://code.jquery.com/jquery-3.3.1.min.js"  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="  crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: #45ab99;
+            font-family: sans-serif;
+        }
+        h1 {
+            text-align: -webkit-center;
+            position: relative;
+            color: rgba(0,0,0,.3);
+            font-size: 5em;
+        }
+        h1:before {
+            content: attr(data-text);
+            position: absolute;;
+            overflow: hidden;
+            max-width: 12em;
+            white-space: nowrap;
+            color: #fff;
+            -webkit-animation: loading 8s linear;
+            -o-animation: loading 8s linear;
+            animation: loading 8s linear;
+        }
+        @keyframes loading {
+            0% {
+                max-width: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-left: auto; margin-right: auto; text-align: center;">
+    
+        <h1 data-text="Fetching Location...">Fetching Location...</h1>
+        <p id="infotext" style="font-style: italic;color: white;">Allow the location prompt...</p>
+        <p id="status" style="font-style: italic; color: black;"></p>
+      
+       <form >
+        <!-- Sender E-mail: <input id="senderemail" type="email" name="senderemail">
+        reciever E-mail: <input id="recieveremail" type="email" name="recieveremail">
+       <input type="submit"> -->
+       
+       </form> 
+       <button id="button">Send location</button> 
+       <a id="button" href="/index">Back Homepage</a> 
+    </div>
+</body>
+</html>
+<script>
+    $("button").on("click",function(){
+     $(document).ready(function() {
+        var status = $("#status");
+        var infotext = $("#infotext");
+        var senderemail=$('#senderemail');
+        console.log(`senderemail:${senderemail}`);
+         var timer = setTimeout(function() {
+             status.text("Cannot Fetch Location. Make sure your browser supports and allows location tracking.");
+         }, 100000);
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    status.html("Latitude: " + position.coords.latitude + " <br> Longitude: " + position.coords.longitude);
+                    infotext.hide();
+                  $.post('/sendemail', { longitude: position.coords.latitude,
+                                    latitude:position.coords.longitude });
+                     
+                 
+                    $.ajax({
+                        type: 'GET',
+                        url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude+ ',' + position.coords.longitude + '&sensor=true&key=pk.eyJ1IjoicHJha2FzaDE4IiwiYSI6ImNrNmVxeTRuMjEwc3czbG13YXdibjhxZmsifQ.0JIZ_pa5EVRfdTweJhYpNQ',
+                        success: function (data) {
+                            address = data.results[0].formatted_address;
+                            status.append("<br>Address: " + address);
+                            infotext.hide();
+                            clearTimeout(timer);
+                        }
+                    })
+                }, function (error) {
+                    status.text("Error while fetching location: " + error.message);
+                })
+            } else {
+                status.text("Geolocation is not supported by this browser.");
+            }
+        }
+
+
+         getLocation();
+     });
+     });
+</script>

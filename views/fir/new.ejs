@@ -1,0 +1,27 @@
+<% include ../partials/header %>
+
+
+<div style="margin-top: 2em;" class="ui main text container segment">
+  <div class="ui huge header">File a complaint</div>
+   
+    <form class="ui form" action="/indexfir" method="POST">
+        <div class="field">
+        <label>Title</label>
+        <input type="text" name="fir[title]" placeholder="title">    
+        </div> 
+        <div class="field">
+        <label>Aadhaar No. </label>
+         <input type="text" name="fir[image]" value=" <%= currentUser.aadhar %>">
+        </div>
+        <div class="field">
+        <label>fir Content</label>
+        <textarea name="fir[body]"></textarea>
+        </div>
+        <button class="ui blue  basic button">
+        <i class="icon upload"></i> Post</button>
+        
+    </form>
+
+</div>
+
+<% include ../partials/footer %>

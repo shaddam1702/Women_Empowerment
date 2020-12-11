@@ -1,0 +1,38 @@
+<% include ../partials/header %>
+<div style="margin-top: 4em;"  class="ui fixed inverted menu">
+  <div class="ui container">
+   
+ 
+   <a href="/" class="item">Home</a>
+   <a href="/indexjob/new" class="item">New Post</a>
+   </div>
+</div> 
+
+<div class="ui main text container segment">
+  <div class="ui huge header"><%=job.title %></div>
+     <div class="ui top attached">
+        <div class="item">
+         
+           <div class="content">
+             <span><%=job.created %></span>  
+            
+           </div>
+            
+            <div class="description">
+             <!-- <p><%-job.body %></p> -->
+             <a  href="<%- job.body %>"><%- job.body %></a>
+            </div>
+             <!-- <a class="ui green basic button" href="/indexlaw/<%= law._id %>/edit">Edit</a>
+            <form id="delete" action="/indexlaw/<%= law._id %>?_method=DELETE" method="POST">
+            
+             <button class="ui red basic button">Delete</button> -->
+            </form>
+           
+         
+         </div>
+      
+     </div>
+    
+  </div>
+
+<% include ../partials/footer %>

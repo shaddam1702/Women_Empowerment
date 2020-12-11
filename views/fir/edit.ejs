@@ -1,0 +1,33 @@
+<% include ../partials/header %>
+<div class="ui fixed inverted menu">
+  <div class="ui container">
+   
+   <a class="header item"><i class="code icon"></i>Blog site</a>
+   <a href="/" class="item">Home</a>
+   <a href="/indexfir/new" class="item">New Post</a>
+   </div>
+</div>
+<div class="ui main text container segment">
+  <div class="ui huge header">Edit <%= fir.title %></div>
+   
+    <form class="ui form" action="/indexfir/<%= fir._id %>?_method=PUT" method="POST">
+        <div class="field">
+        <label>Title</label>
+        <input type="text" name="fir[title]" value="<%= fir.title %>">    
+        </div> 
+        <div class="field">
+        <label>Aadhaar No.</label>
+         <input type="text" name="fir[image]" value="<%= fir.image %>">
+        </div>
+        <div class="field">
+        <label>Blog Content</label>
+        <textarea name="fir[body]"><%= fir.body %></textarea>
+        </div>
+        <button class="ui green  basic button">
+        <i class="icon upload"></i> UPDATE</button>
+          
+    </form>
+
+</div>
+
+<% include ../partials/footer %>

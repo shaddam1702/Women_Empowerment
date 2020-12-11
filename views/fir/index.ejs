@@ -1,0 +1,40 @@
+<% include ../partials/header %>
+
+
+<div style="margin-top: 2em;"class="ui main text container">
+    <div class="ui huge header">Recieved Complaint</div>
+
+  
+    <div class="ui top attached segment">
+        <div class="ui divided items">
+            <% firs.forEach(function(fir){ %>
+            <div class="item">
+                <!-- <div class="image">
+                    <img src="<%= fir.image %>">
+                </div> -->
+                <div class="content">
+                    <span><%=fir.image %></span>  
+                   
+                  </div>
+                <div class="content">
+                        <a class="header" href="/indexfir/<%= fir._id %>"><%= fir.title %></a>
+                   <div class="meta">
+                       <span><%= fir.created.toDateString() %></span>
+                   </div>
+                   <div class="description">
+                       <p><%- fir.body.substring(0,100) %>...</p>
+                   </div>
+                   <div class="extra">
+                       <a class="ui basic blue button floated" href="/indexfir/<%= fir._id %>">
+                           Read More
+                           <i class="right chevron icon"></i>
+                       </a>
+                   </div>
+               </div>
+           </div>
+        <% }); %>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

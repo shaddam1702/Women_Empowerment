@@ -1,0 +1,32 @@
+<% include ../partials/header %>
+ <div class="extra">
+    <a class="ui basic blue button floated" href="/indexjob/new">
+        Add Link to Job
+        
+    </a>
+</div> 
+<div style="margin-top: 2em;" class="ui main text container">
+    <div class="ui huge header">Jobs</div>
+    <div class="ui top attached segment">
+        <div class="ui divided items">
+            <% jobs.forEach(function(job) { %>
+            <div class="item">
+                
+                <div class="content">
+                        <a class="header" href="#"><%= job.title %></a>
+                   <div class="meta">
+                       <span><%= job.created.toDateString() %></span>
+                   </div>
+                   <div class="Job URL">
+                       <!-- <p><%- job.body %></p> -->
+                       <a  href="<%- job.body %>"><%- job.body %></a>
+                   </div>
+                  
+               </div>
+           </div>
+        <% }); %>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>
